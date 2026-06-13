@@ -505,7 +505,9 @@ Codex CLI prompt:
 ```text
 请基于当前 workspace 文件复述项目状态，并提出一个可以安全执行的小任务。
 Level 1 可能只有 README.md 和 STATE.md；不要假设 SPEC.md 或 AGENTS.md 一定存在。
-如果任务需要修改文件，请先说明计划、涉及文件和验证命令。
+提出的交接任务必须是 read-only 或低风险操作。
+不要修改文件；等待确认前不要执行任务。
+请明确说明“等待确认后再执行”。
 不要执行高风险操作。
 ```
 
@@ -522,7 +524,7 @@ Level 1 可能只有 README.md 和 STATE.md；不要假设 SPEC.md 或 AGENTS.md
 - [ ] Level 1 的禁止操作和完成标准已写入 `README.md` 或 `STATE.md`
 - [ ] Level 2+ 的 `AGENTS.md` 写清禁止操作和完成标准
 - [ ] 人类 review 过 AI 生成的命令和规则
-- [ ] agent 能复述项目状态并接手一个小任务
+- [ ] agent 能复述项目状态并接手一个 read-only 或低风险小任务
 
 ## 相关文档 / Related Docs
 
