@@ -144,3 +144,64 @@ agent 不可以做：
 - 自动安装 skill。
 - 自动把项目级 skill 提升为系统级 skill。
 - 在没有人类 review 的情况下改变未来项目的默认工作方式。
+
+## 模板 / Templates
+
+这些模板是纯文档模板，可以复制到项目的 `AGENTS.md`、`STATE.md`、runbook、checklist 或任务说明里。
+
+### Project Skill Template
+
+```markdown
+## Project Skill: <name>
+
+- Skill name:
+- Trigger:
+- Project context:
+- Allowed actions:
+- Forbidden actions:
+- Inputs:
+- Steps:
+- Verification:
+- State updates:
+- Owner or reviewer:
+- Examples:
+- Not applicable when:
+- Last reviewed:
+```
+
+填写要求：
+
+- `Trigger` 写清什么时候应该使用这个项目级 skill。
+- `Project context` 写清它依赖哪些 repo 约定、命令、目录、风险边界或团队规则。
+- `Allowed actions` 和 `Forbidden actions` 必须足够具体，不能让 agent 自行扩大范围。
+- `Verification` 必须指向真实命令、review、CI、人工 checklist 或明确的验证信号。
+- `Not applicable when` 写清反例，避免 skill 被错误泛化。
+
+### System Skill Candidate Template
+
+```markdown
+## System Skill Candidate: <name>
+
+- Candidate name:
+- Problem it solves:
+- Evidence from repeated use:
+- Scope:
+- Non-goals:
+- Required inputs:
+- Workflow steps:
+- Tool or context requirements:
+- Verification:
+- Failure modes:
+- Examples:
+- Non-examples:
+- Maintenance owner:
+- Promotion decision:
+```
+
+填写要求：
+
+- `Evidence from repeated use` 必须说明这个能力在哪些任务或项目中反复有效。
+- `Scope` 和 `Non-goals` 必须能防止过度泛化。
+- `Verification` 不能只写“人工感觉正确”，要说明可观察的判断信号。
+- `Failure modes` 写清什么情况下应该停止使用或交回人类。
+- `Promotion decision` 只能记录候选状态、批准状态或拒绝原因，不能让 agent 自动批准。
