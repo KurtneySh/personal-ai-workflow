@@ -205,3 +205,128 @@ agent 不可以做：
 - `Verification` 不能只写“人工感觉正确”，要说明可观察的判断信号。
 - `Failure modes` 写清什么情况下应该停止使用或交回人类。
 - `Promotion decision` 只能记录候选状态、批准状态或拒绝原因，不能让 agent 自动批准。
+
+## 判断 prompt / Prompt Guidance
+
+这些 prompt 用于判断和起草，不用于自动创建或安装系统级 skill。
+
+### 人类主导：skill 候选报告
+
+#### Claude Code
+
+```text
+请阅读当前 repo 的 README、STATE、可选的 SPEC/AGENTS、相关 runbook 和最近任务记录。
+
+请判断当前反复出现的流程是否值得沉淀为 skill。
+
+要求：
+- 先说明重复模式是什么。
+- 区分项目级 skill 和系统级 skill 候选。
+- 列出证据来自哪些文件、任务或 review 反馈。
+- 写清适用范围、边界、不适用场景和验证方式。
+- 如果证据不足，请建议继续记录，不要创建 skill。
+- 不要自动创建、安装或升级系统级 skill。
+
+请输出：
+- 是否建议沉淀
+- 建议类型：项目级 skill / 系统级 skill 候选 / 暂不沉淀
+- 判断理由
+- 证据
+- 风险和不适用场景
+- 下一步建议
+```
+
+#### Codex CLI
+
+```text
+请基于当前 repo 文件和真实任务记录，判断一个重复流程是否值得沉淀为 skill。
+
+请先读取 README.md、STATE.md，以及如果存在的 SPEC.md、AGENTS.md、runbook、checklist。
+
+要求：
+- 只使用 repo 中真实存在的信息。
+- 判断它更适合项目级 skill、系统级 skill 候选，还是暂不沉淀。
+- 如果找不到重复证据、验证信号或清晰边界，请明确说明。
+- 不要自动创建、安装或升级系统级 skill。
+
+请输出：
+- 重复模式
+- 推荐类型
+- 证据
+- 项目依赖
+- 验证方式
+- 不适用场景
+- 需要人类确认的问题
+```
+
+### loop 主导：项目级 skill 草稿
+
+#### Claude Code
+
+```text
+请基于刚完成的 loop 记录，判断是否出现了值得沉淀的项目级 skill。
+
+要求：
+- 只在 loop 已有明确目标、动作边界、验证信号、停止条件和升级条件时判断。
+- 只起草项目级 skill，不要创建系统级 skill。
+- 写清 trigger、project context、allowed actions、forbidden actions、verification 和 not applicable when。
+- 如果重复证据不足，请输出“暂不沉淀”。
+- 草稿必须等待人类 review 后才能写入项目规则。
+```
+
+#### Codex CLI
+
+```text
+请读取本次任务或 loop 的状态记录，判断是否应该起草一个项目级 skill。
+
+要求：
+- 只使用已有记录，不要编造发生过的步骤。
+- 如果发现可复用模式，请按 Project Skill Template 输出草稿。
+- 如果缺少重复证据、验证信号或边界，请说明暂不沉淀。
+- 不要修改 AGENTS.md、STATE.md 或系统级 skill 目录，除非人类明确确认。
+```
+
+### 系统级 skill 候选评估
+
+#### Claude Code
+
+```text
+请评估一个项目级 skill 是否已经具备升级为系统级 skill 候选的条件。
+
+要求：
+- 检查是否有跨任务或跨项目的重复证据。
+- 检查它是否能脱离当前 repo 的隐藏上下文。
+- 写清 scope、non-goals、required inputs、verification、failure modes、examples 和 non-examples。
+- 如果证据不足，请建议继续作为项目级 skill 维护。
+- 不要创建、安装或升级系统级 skill，只输出候选评估。
+```
+
+#### Codex CLI
+
+```text
+请根据当前 repo 中的项目级 skill、任务记录和案例记录，评估它是否适合作为系统级 skill 候选。
+
+要求：
+- 只输出评估和候选草稿。
+- 明确说明跨任务或跨项目证据。
+- 明确说明哪些内容仍然依赖当前项目。
+- 如果无法证明可迁移性，请建议不要升级。
+- 不要写入系统级 skill 目录，不要安装 skill。
+```
+
+## 维护 / Maintenance
+
+- 每次真实使用后，检查 skill 是否减少了重复协调。
+- 当命令、项目规则、验证信号、权限边界或风险边界变化时，更新 skill。
+- 当触发条件不再出现，或者 skill 反复导致错误行为时，退役它。
+- 项目级 skill 的 owner 可以是项目维护者、reviewer 或负责该流程的人。
+- 系统级 skill 候选必须记录维护责任人和升级决策。
+- 保留足够上下文，让下一个人或 agent 能理解为什么这个 skill 存在。
+
+## 相关文档 / Related Docs
+
+- [Loops](../loops/README.md)
+- [新项目启动 Playbook](../playbooks/start-a-new-project.md)
+- [项目级别判断](../guides/project-levels.md)
+- [按项目级别推荐 Infra](../guides/infra-by-level.md)
+- [Infra Checklist](../guides/infra-checklists.md)
