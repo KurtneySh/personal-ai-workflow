@@ -16,7 +16,7 @@
 ## 内容地图
 
 - `zh/guides/`：项目级别、infra 推荐和 checklist。
-- `zh/playbooks/`：从目标到完成的端到端任务流程。
+- `zh/playbooks/`：从目标到完成的端到端任务流程。新项目启动见 [新项目启动 Playbook](zh/playbooks/start-a-new-project.md)。
 - `zh/cookbook/`：按场景使用 Claude Code 和 Codex CLI。
 - `zh/loops/`：loop 是否该做、怎么设计、怎么停止。
 - `zh/skill-workflow/`：什么时候把流程沉淀成 skill。

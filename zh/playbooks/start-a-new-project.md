@@ -439,3 +439,94 @@ Level 1 通常包括 README/STATE；Level 2+ 通常还包括 SPEC/AGENTS。
 - 低风险交接任务建议
 - 明确说明“等待人类确认后再执行”
 ```
+
+## 关键步骤的 Claude Code / Codex CLI 提示
+
+这些提示适合在关键节点单独复制给工具使用。默认先读文件、先报告计划、先等待确认；不要让工具假设 Level 1 一定有 `SPEC.md` 或 `AGENTS.md`。
+
+### Repo 扫描
+
+Claude Code prompt:
+
+```text
+请先阅读当前 repo 的 README、脚本、测试、构建配置和文档。
+不要修改文件。
+不要编造不存在的命令、目录或项目结构。
+请输出项目现状、可用验证命令和缺失的 AI workflow infra。
+如果某类信息不存在或无法确认，请明确写“缺失”或“需要确认”。
+```
+
+Codex CLI prompt:
+
+```text
+请在当前 repo 内检查 README.md、STATE.md、可选的 SPEC.md / AGENTS.md，以及可用脚本。
+判断当前项目级别，列出缺失 infra，并给出最小补齐方案。
+Level 1 不要假设一定存在 SPEC.md 或 AGENTS.md。
+不要修改文件。
+不要编造不存在的命令；如果找不到验证命令，请明确说明。
+```
+
+### 模板生成
+
+Claude Code prompt:
+
+```text
+请基于 zh/templates/project/ 下的模板，为当前项目生成该级别必需文件的初稿。
+Level 1 通常只需要 README.md、STATE.md 和验证命令记录；Level 2+ 才需要 SPEC.md 和 AGENTS.md。
+请先列出将创建或更新的文件、证据来源、假设和需要人类确认的问题。
+修改任何已有文件前，请等待人类确认。
+不要编造不存在的命令、测试、部署流程或团队规则。
+```
+
+Codex CLI prompt:
+
+```text
+请在当前 repo 中读取已有文件和脚本，
+基于 zh/templates/project/ 下的模板补齐最小 workspace 文件。
+只使用 repo 中真实存在的信息。
+Level 1 不要无条件创建 SPEC.md 或 AGENTS.md；Level 2+ 才补齐这些文件。
+修改任何已有文件前，请先说明计划、涉及文件和证据来源，并等待确认。
+不确定的内容请写“需要确认”。
+```
+
+### 最终 smoke test
+
+Claude Code prompt:
+
+```text
+请阅读 README.md、STATE.md，以及如果存在的 SPEC.md、AGENTS.md。
+复述项目级别、当前状态、下一步、阻塞和验证方式。
+然后提出一个 read-only 或低风险接手任务。
+不要修改文件，先等待确认。
+```
+
+Codex CLI prompt:
+
+```text
+请基于当前 workspace 文件复述项目状态，并提出一个可以安全执行的小任务。
+Level 1 可能只有 README.md 和 STATE.md；不要假设 SPEC.md 或 AGENTS.md 一定存在。
+如果任务需要修改文件，请先说明计划、涉及文件和验证命令。
+不要执行高风险操作。
+```
+
+## 最终检查清单 / Final Checklist
+
+- [ ] 项目级别已判断
+- [ ] `README.md` 已创建或更新
+- [ ] `STATE.md` 已创建或更新
+- [ ] Level 2+ 项目有 `SPEC.md`
+- [ ] Level 2+ 项目有 `AGENTS.md`
+- [ ] Level 3/4 项目覆盖对应 guide 中的最低协作、风险和交接 infra
+- [ ] 验证命令真实可运行，或已明确记录找不到真实验证命令
+- [ ] `STATE.md` 写清下一步和阻塞
+- [ ] Level 1 的禁止操作和完成标准已写入 `README.md` 或 `STATE.md`
+- [ ] Level 2+ 的 `AGENTS.md` 写清禁止操作和完成标准
+- [ ] 人类 review 过 AI 生成的命令和规则
+- [ ] agent 能复述项目状态并接手一个小任务
+
+## 相关文档 / Related Docs
+
+- [项目级别判断](../guides/project-levels.md)
+- [按项目级别推荐 Infra](../guides/infra-by-level.md)
+- [Infra Checklist](../guides/infra-checklists.md)
+- [项目工作台模板](../templates/project/README.md)
