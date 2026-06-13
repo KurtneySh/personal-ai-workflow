@@ -180,7 +180,7 @@ The Claude Code and Codex CLI notes are for tool differences only. They do not r
 Level 1:
 
 - `README.md` is required.
-- `STATE.md` is recommended.
+- `STATE.md` is required.
 - `SPEC.md` is optional.
 - `AGENTS.md` is optional; short agent rules can live in the README.
 

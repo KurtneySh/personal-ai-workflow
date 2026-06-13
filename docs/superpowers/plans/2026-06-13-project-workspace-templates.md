@@ -71,13 +71,13 @@ Project workspace templates 解决三个问题：
 | 模板 | Level 1 | Level 2 | Level 3 | Level 4 |
 | --- | --- | --- | --- | --- |
 | `README.template.md` | 必需 | 必需 | 必需 | 必需 |
-| `STATE.template.md` | 推荐 | 必需 | 必需 | 必需 |
+| `STATE.template.md` | 必需 | 必需 | 必需 | 必需 |
 | `SPEC.template.md` | 可选 | 必需 | 必需 | 必需，需写清高风险约束 |
 | `AGENTS.template.md` | 可选 | 必需 | 必需，需写清协作规则 | 必需，需写清权限边界和审批点 |
 
 ## 模板选择建议
 
-- Level 1 项目先写 `README.md`，如果项目会持续超过一天，再补 `STATE.md`。
+- Level 1 项目先写 `README.md` 和 `STATE.md`；`SPEC.md` 和 `AGENTS.md` 保持可选，除非项目会长期维护或需要 agent 反复参与。
 - Level 2 项目建议一次性补齐 `README.md`、`SPEC.md`、`STATE.md` 和 `AGENTS.md`。
 - Level 3 项目的 `AGENTS.md` 必须说明 review、ownership、handoff 和协作边界。
 - Level 4 项目的 `SPEC.md` 和 `AGENTS.md` 必须说明风险、权限、人类审批点和回滚要求。
@@ -88,7 +88,8 @@ Project workspace templates 解决三个问题：
 
 ```text
 请阅读当前仓库，判断这个项目大致属于 Level 1-4 的哪一级。
-基于 zh/templates/project/ 下的模板，为当前项目生成 README.md、SPEC.md、STATE.md 和 AGENTS.md 的初稿。
+基于 zh/templates/project/ 下的模板，为当前项目生成该级别必需模板的初稿。
+Level 1 通常先生成 README.md 和 STATE.md；只有在项目需要长期维护或 agent 反复参与时，才生成 SPEC.md 和 AGENTS.md。
 请标出你做出的假设。
 不要编造不存在的命令、测试、部署流程或团队规则。
 如果缺少信息，请用“需要确认”标出，而不是自行补全。
@@ -404,8 +405,7 @@ Create `zh/templates/project/STATE.template.md` with this content:
 
 ## 推荐级别 / Recommended Levels
 
-- Level 1：推荐。
-- Level 2-4：必需。
+- Level 1-4：必需。
 
 ## 必填部分 / Required Sections
 
