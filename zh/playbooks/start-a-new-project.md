@@ -235,3 +235,199 @@ Level 1 通常包括 README/STATE；Level 2+ 通常还包括 SPEC/AGENTS。
 - 最近一次验证结果
 - smoke test 结果
 ```
+
+## 路径 B：改造已有项目
+
+### B1. 扫描现有 repo
+
+- Input: 一个已有仓库。
+- Action: 检查 README、脚本、测试、构建配置、文档和当前 git 状态。
+- Output: 项目现状摘要；已存在 infra 清单；风险或不确定项。
+- Verification: 摘要引用真实文件或命令；不根据猜测补全项目结构。
+- AI Prompt:
+
+```text
+请扫描当前 repo，列出现有 README、脚本、测试、构建配置、文档和 git 状态。
+
+要求：
+- 不要修改文件。
+- 不要编造命令、目录或项目结构。
+- 只根据真实存在的文件和实际命令输出总结。
+- 如果某类信息不存在或无法确认，请明确写“缺失”或“需要确认”。
+
+请输出：
+- 项目现状摘要
+- 已存在 infra 清单
+- 风险或不确定项
+```
+
+### B2. 判断项目级别
+
+- Input: repo 扫描结果；已知协作、生产、权限和数据风险。
+- Action: 阅读 `zh/guides/project-levels.md`；判断 Level 1-4。
+- Output: 项目级别；判断理由；需要人类确认的问题。
+- Verification: 如果存在生产、权限、认证、支付、敏感数据、安全或合规风险，必须停下来让人类确认。
+- AI Prompt:
+
+```text
+请阅读 `zh/guides/project-levels.md`，基于 repo 扫描结果判断这个项目属于 Level 1-4。
+
+输入：
+- repo 扫描结果：<粘贴 B1 输出>
+- 已知协作、生产、权限和数据风险：<粘贴已知信息>
+
+要求：
+- 明确说明判断理由。
+- 如果可能涉及生产、权限、认证、支付、敏感数据、安全或合规风险，请停止并要求人类确认。
+- 如果可能是 Level 4，请停止并要求人类确认。
+- 不要自行降低风险级别。
+- 不要用缺失信息替项目做低风险假设。
+
+请输出：
+- 项目级别
+- 判断理由
+- 需要人类确认的问题
+```
+
+### B3. 盘点已有 infra 和缺失项
+
+- Input: 项目级别；repo 扫描结果。
+- Action: 对照 `zh/guides/infra-by-level.md` 和 `zh/guides/infra-checklists.md`；列出已有和缺失项。
+- Output: 已有 infra；缺失 infra；最小补齐方案。
+- Verification: Level 1 至少包含 README、STATE 和验证命令；Level 2+ 至少包含 SPEC、AGENTS、docs/decisions/、tests 或明确验证脚本；Level 3/4 选择后必须满足 guide 中的最低 infra。
+- AI Prompt:
+
+```text
+请阅读 `zh/guides/infra-by-level.md` 和 `zh/guides/infra-checklists.md`，基于当前项目级别和 repo 扫描结果盘点 AI workflow infra。
+
+输入：
+- 项目级别：<Level 1/2/3/4>
+- repo 扫描结果：<粘贴 B1 输出>
+
+要求：
+- 列出现有 infra。
+- 列出缺失 infra。
+- 只提出当前级别的最小补齐方案。
+- 不要建议无关文件、无关流程或超出当前级别的可选项。
+- Level 1 至少需要 README、STATE 和一个验证命令。
+- Level 2+ 至少需要 SPEC、AGENTS、docs/decisions/、tests 或明确验证脚本。
+- Level 3/4 如果被选中，必须对照 guide 覆盖最低 infra。
+- 如果某项无法从 repo 证据确认，请标记为“需要确认”。
+
+请输出：
+- 已有 infra
+- 缺失 infra
+- 最小补齐方案
+```
+
+### B4. 基于现有证据补齐 workspace 文件
+
+- Input: 现有 repo 文档和代码；缺失 infra 清单。
+- Action: 基于现有证据生成或更新 `README.md`、`STATE.md`、`SPEC.md`、`AGENTS.md`，以及 B3 所需的其他最小 infra；不确定信息写为 `需要确认`。
+- Output: 补齐后的 workspace 文件和/或标记为 `需要确认` 的项目。
+- Verification: 新内容可追溯到现有文件、命令或人类确认；不编造命令、测试、部署流程或团队规则。
+- AI Prompt:
+
+```text
+请基于真实 repo 文件、真实命令和已有人类确认信息，补齐缺失的 workspace 文件。
+
+输入：
+- 现有 repo 文档和代码摘要：<粘贴证据>
+- 缺失 infra 清单：<粘贴 B3 输出>
+
+要求：
+- 按 B3 的最小补齐方案生成或更新 `README.md`、`STATE.md`、`SPEC.md`、`AGENTS.md`，以及其他必要 infra。
+- Level 1 不要假设一定存在 `SPEC.md` 或 `AGENTS.md`。
+- 所有新增内容必须能追溯到现有文件、实际命令或人类确认。
+- 不确定信息统一写为“需要确认”。
+- 不要编造命令、测试、部署流程、团队规则、权限模型或完成标准。
+- 修改前说明将编辑哪些文件。
+
+请输出：
+- 已补齐的 workspace 文件
+- 仍需人类确认的项目
+- 每项关键信息的证据来源
+```
+
+### B5. 校验验证命令
+
+- Input: README、STATE、AGENTS 中记录的验证命令。
+- Action: 实际运行至少一个验证命令；记录命令和结果。
+- Output: 验证命令结果；如果失败，记录关键错误和判断。
+- Verification: 命令必须实际运行；失败不能当作成功。
+- AI Prompt:
+
+```text
+请检查 README、STATE、AGENTS 中记录的验证命令，并运行最小必要验证。
+
+要求：
+- Level 1 可能没有 AGENTS；不要假设文件一定存在。
+- 至少实际运行一个可用的验证命令。
+- 报告命令、结果和关键错误。
+- 如果没有记录验证命令，请明确说明“未找到验证命令”。
+- 如果命令失败，请明确说明失败，不要声称成功。
+- 不要编造不存在的脚本、测试或工具链。
+
+请输出：
+- 检查过的文件
+- 实际运行的命令
+- 命令结果
+- 失败时的关键错误和判断
+```
+
+### B6. 人类 review 并更新 STATE
+
+- Input: 补齐后的 workspace 文件；验证命令结果。
+- Action: 人类 review 目标、边界、禁止操作、完成标准和验证结果；确认后更新 `STATE.md` 的当前状态、下一步和阻塞问题。
+- Output: 经确认的 workspace 文件；可交接的 `STATE.md`。
+- Verification: `STATE.md` 能让下一个 agent 接手；`AGENTS.md` 包含禁止操作和完成标准。
+- AI Prompt:
+
+```text
+请基于 README、SPEC、STATE、AGENTS 和验证结果，列出需要人类确认的关键字段。
+
+要求：
+- 重点检查目标、边界、禁止操作、完成标准和验证结果。
+- Level 1 可能没有 SPEC 或 AGENTS；不要假设文件一定存在。
+- 如果 AGENTS 存在，确认其中包含禁止操作和完成标准。
+- 如果 AGENTS 不存在，请说明这是否符合当前项目级别，或是否需要补齐。
+- 确认前不要修改文件。
+- 不要编造团队规则、验收标准或验证结论。
+
+请输出：
+- 需要人类确认的字段
+- 每个字段的当前内容或缺失状态
+- 建议确认问题
+- 明确说明“等待人类确认后再更新 STATE.md”
+```
+
+### B7. 让 agent 做低风险接手测试
+
+- Input: 经确认的 workspace 文件。
+- Action: agent 阅读文件，复述项目状态，提出低风险交接任务；执行前等待确认；如果执行，先报告结果再做任何文档更新。
+- Output: agent 对项目的理解摘要；低风险任务建议或执行结果。
+- Verification: agent 能说出项目级别、当前状态、下一步和验证方法；不会再次询问基础上下文。
+- AI Prompt:
+
+```text
+请阅读已创建或更新的 workspace 文件，并复述你对项目的理解。
+
+要求：
+- Level 1 可能没有 SPEC 或 AGENTS；不要假设文件一定存在。
+- 说明项目级别、当前状态、下一步、阻塞问题和验证方法。
+- 提出一个 read-only 或低风险交接任务。
+- 不要执行高风险操作。
+- 不要在确认前编辑文件。
+- 如果人类确认执行低风险任务，请先执行并报告结果，再等待进一步确认后才更新任何文档。
+- 不要再次询问已经写在 workspace 文件中的基础上下文。
+
+请输出：
+- 项目理解摘要
+- 项目级别
+- 当前状态
+- 下一步
+- 阻塞问题
+- 验证方法
+- 低风险交接任务建议
+- 明确说明“等待人类确认后再执行”
+```
