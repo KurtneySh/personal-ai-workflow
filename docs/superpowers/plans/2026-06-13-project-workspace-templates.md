@@ -492,7 +492,7 @@ Create `zh/templates/project/STATE.template.md` with this content:
 
 Create `zh/templates/project/AGENTS.template.md` with this content:
 
-````markdown
+`````markdown
 # AGENTS Template
 
 ## 用途 / Purpose
@@ -544,7 +544,7 @@ Create `zh/templates/project/AGENTS.template.md` with this content:
 
 ## 可复制模板 / Copyable Template
 
-```markdown
+````markdown
 # AGENTS
 
 ## 项目上下文
@@ -627,8 +627,8 @@ Create `zh/templates/project/AGENTS.template.md` with this content:
 - 使用 Codex CLI 时，优先让 agent 在 repo 内读文件、改文件、运行验证命令。
 - 对多步骤任务，先生成 spec / plan，再执行。
 - 结束前报告修改文件、验证结果和剩余风险。
-```
 ````
+`````
 
 - [ ] **Step 3: Verify STATE and AGENTS template sections**
 
@@ -645,7 +645,7 @@ Expected: matches for the key sections.
 Run:
 
 ```bash
-git diff --check -- zh/templates/project/STATE.template.md zh/templates/project/AGENTS.template.md
+git diff --check -- zh/templates/project/STATE.template.md zh/templates/project/AGENTS.template.md docs/superpowers/plans/2026-06-13-project-workspace-templates.md
 ```
 
 Expected: no output.
@@ -655,7 +655,7 @@ Expected: no output.
 Run:
 
 ```bash
-git add zh/templates/project/STATE.template.md zh/templates/project/AGENTS.template.md
+git add zh/templates/project/STATE.template.md zh/templates/project/AGENTS.template.md docs/superpowers/plans/2026-06-13-project-workspace-templates.md
 git commit -m "docs: add project state and agents templates"
 ```
 
