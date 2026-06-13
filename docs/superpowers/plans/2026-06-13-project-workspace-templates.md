@@ -677,7 +677,7 @@ Find this line:
 Replace it with:
 
 ```markdown
-- `zh/templates/`：纯文档模板示例。项目工作台模板见 [Project Workspace Templates](zh/templates/project/README.md)。
+- `zh/templates/`：纯文档模板示例。项目工作台模板见 [项目工作台模板](zh/templates/project/README.md)。
 ```
 
 - [ ] **Step 2: Verify the link exists**
@@ -685,7 +685,7 @@ Replace it with:
 Run:
 
 ```bash
-rg -n "Project Workspace Templates|zh/templates/project/README.md" README.zh.md
+rg -n "项目工作台模板|zh/templates/project/README.md" README.zh.md
 ```
 
 Expected: one match in the content map.

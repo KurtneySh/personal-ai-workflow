@@ -21,7 +21,7 @@
 - `zh/loops/`：loop 是否该做、怎么设计、怎么停止。
 - `zh/skill-workflow/`：什么时候把流程沉淀成 skill。
 - `zh/cases/`：实战案例，记录项目背景、infra 选择、agent 行动和人的判断。
-- `zh/templates/`：纯文档模板示例。
+- `zh/templates/`：纯文档模板示例。项目工作台模板见 [项目工作台模板](zh/templates/project/README.md)。
 - `zh/reference/`：概念、哲学、术语和附录材料。
 
 ## 当前状态
