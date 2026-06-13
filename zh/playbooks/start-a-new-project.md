@@ -109,18 +109,24 @@
 ### A3. 选择最小 infra
 
 - Input: 项目级别。
-- Action: 阅读 `zh/guides/infra-by-level.md`；列出当前级别最小需要的文件。
-- Output: 本项目需要创建的 workspace 文件清单。
-- Verification: Level 1 至少 `README.md` + `STATE.md`; Level 2+ also `SPEC.md` + `AGENTS.md`.
+- Action: 阅读 `zh/guides/infra-by-level.md`；列出当前级别最小需要的文件或目录。
+- Output: 本项目需要创建的 workspace 文件和目录清单。
+- Verification: 清单覆盖对应级别最低要求；Level 1 至少包含 `README.md`、`STATE.md` 和一个验证命令；Level 2 至少再包含 `SPEC.md`、`AGENTS.md`、`docs/decisions/` 和测试或明确验证脚本；Level 3/4 按指南和项目风险补充协作、CI、交接、风险、部署、审计和权限边界材料。
 - AI Prompt:
 
 ```text
-请阅读 `zh/guides/infra-by-level.md`，根据项目级别列出当前最小需要创建的 workspace 文件。
+请阅读 `zh/guides/infra-by-level.md`，根据项目级别列出当前最小需要创建的 workspace 文件或目录。
 
 项目级别：<Level 1/2/3/4>
 
-只列出最小 infra，不要添加不必要的文件。
-请输出文件清单和每个文件的用途。
+请按项目级别判断：
+- Level 1：`README.md`、`STATE.md`、至少一个验证命令。
+- Level 2：Level 1 全部，加 `SPEC.md`、`AGENTS.md`、`docs/decisions/`、tests 或明确验证脚本。
+- Level 3：Level 2 全部，按需补充协作、ownership、review、CI、任务模板、交接和 multi-agent contract 相关材料。
+- Level 4：Level 3 全部，按需补充风险、安全、隐私、rollback、human approval、部署、审计、loop stop 和权限边界相关材料。
+
+只列出最小 infra，不要添加不必要的文件，也不要为了满足级别而机械创建所有可选文件。
+请输出文件清单、用途，以及哪些项目需要人类确认。
 ```
 
 ### A4. 复制 project templates
@@ -173,9 +179,9 @@
 ### A6. 建立至少一个验证命令
 
 - Input: 当前项目文件；可用脚本或工具链。
-- Action: 找到或定义一个可以运行的验证命令；写入 README/STATE/AGENTS.
-- Output: 一个真实可运行的验证命令。
-- Verification: 命令实际运行过；结果被记录。
+- Action: 检查真实项目文件、脚本和工具链；如果存在真实命令，运行最小必要验证命令；在得到人类确认后，把命令和结果写入 README/STATE/AGENTS。
+- Output: 一个真实可运行的验证命令及其运行结果，或明确说明找不到真实可运行的验证命令。
+- Verification: 如果存在真实命令，命令实际运行过且结果被记录；如果不存在，已明确记录找不到真实可运行的验证命令。
 - AI Prompt:
 
 ```text
@@ -183,8 +189,12 @@
 
 如果存在，请输出：
 - 命令
-- 预期结果
-- 应该写入 README/STATE/AGENTS 的位置
+- 为什么这是最小必要验证命令
+- 实际运行结果
+- 建议写入 README/STATE/AGENTS 的内容
+
+找到真实命令后，请先运行最小必要验证命令并报告结果。
+只有在人类确认后，才把命令和结果写入 README/STATE/AGENTS；确认前请明确说明“等待人类确认后再编辑文件”。
 
 如果找不到真实可运行的验证命令，请明确说明“找不到真实可运行的验证命令”。
 不要编造不存在的命令、脚本、测试或工具链。
@@ -193,9 +203,9 @@
 ### A7. 更新 STATE 并做 smoke test
 
 - Input: 已确认的 workspace 文件；验证命令结果。
-- Action: 更新 `STATE.md` with current phase, next step, blockers, latest verification result; have agent perform a low-risk small task based on context.
-- Output: 可交接的 `STATE.md`；一次低风险 smoke test 结果。
-- Verification: agent can restate project state, next step, and no need to ask basic context again.
+- Action: 先阅读 workspace 文件，复述状态并提出低风险 smoke test，等待人类确认；确认后执行 smoke test，并更新 `STATE.md` 的当前阶段、下一步、阻塞问题和最近验证结果。
+- Output: 准备阶段输出当前状态、下一步、阻塞问题和 smoke test 建议；确认执行后输出可交接的 `STATE.md` 和一次低风险 smoke test 结果。
+- Verification: AI 助手能复述项目状态和下一步，不需要再次询问基础上下文；smoke test 结果已记录到 `STATE.md`。
 - AI Prompt:
 
 ```text
@@ -208,5 +218,12 @@
 - 最近一次验证结果
 - 一个低风险 smoke test 小任务建议
 
-不要修改文件。请等待人类确认后再执行 smoke test。
+第一阶段不要修改文件。请明确说明“等待人类确认后再执行 smoke test”。
+
+人类确认后，再执行低风险 smoke test，并更新 STATE.md：
+- 当前阶段
+- 下一步
+- 阻塞问题
+- 最近一次验证结果
+- smoke test 结果
 ```
