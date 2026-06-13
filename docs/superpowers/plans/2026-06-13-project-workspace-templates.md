@@ -233,7 +233,7 @@ Create `zh/templates/project/README.template.md` with this content:
 
 预期结果：
 
-- （填写内容）
+- 所有检查通过，或记录失败命令和关键错误。
 
 ## 目录结构
 
@@ -297,6 +297,7 @@ Create `zh/templates/project/SPEC.template.md` with this content:
 请明确区分目标和非目标。
 请标出你做出的假设。
 如果仓库中没有证据支持某个功能、约束或成功标准，请写“需要确认”，不要编造。
+不要编造不存在的命令、验证方式、功能、约束或成功标准。
 ```
 
 ## 常见错误 / Common Mistakes
@@ -317,11 +318,11 @@ Create `zh/templates/project/SPEC.template.md` with this content:
 
 ## 目标
 
-- （填写内容）
+- 目标 1：
 
 ## 非目标
 
-- （填写内容）
+- 非目标 1：
 
 ## 用户 / 使用场景
 
@@ -330,7 +331,7 @@ Create `zh/templates/project/SPEC.template.md` with this content:
 
 ## 核心功能
 
-- （填写内容）
+- 功能 1：
 
 ## 约束
 
@@ -433,6 +434,7 @@ Create `zh/templates/project/STATE.template.md` with this content:
 请只记录当前状态、下一步、阻塞和交接上下文。
 请标出你做出的假设。
 不要把长期产品愿景塞进 STATE.md；长期目标应该放在 SPEC.md。
+不要编造不存在的命令、验证结果、阻塞或决策。
 ```
 
 ## 常见错误 / Common Mistakes
@@ -449,17 +451,17 @@ Create `zh/templates/project/STATE.template.md` with this content:
 
 ## 当前阶段
 
-- （填写内容）
+- 阶段名称：
 
 ## 当前目标
 
-- （填写内容）
+- 当前目标：
 
 ## 下一步
 
-1. （填写内容）
-2. （填写内容）
-3. （填写内容）
+1. 下一步行动：
+2. 负责人或前置条件：
+3. 验证或交接要求：
 
 ## 阻塞
 
@@ -467,7 +469,7 @@ Create `zh/templates/project/STATE.template.md` with this content:
 
 ## 最近完成
 
-- （填写内容）
+- 已完成事项：
 
 ## 最近决策
 
@@ -477,7 +479,7 @@ Create `zh/templates/project/STATE.template.md` with this content:
 
 ## 已知问题
 
-- （填写内容）
+- 已知问题：
 
 ## 给下一个 agent 的上下文
 
@@ -592,7 +594,7 @@ Create `zh/templates/project/AGENTS.template.md` with this content:
 
 ## 代码与文档约定
 
-- （填写内容）
+- 命名、格式或文档约定：
 
 ## 禁止操作
 
