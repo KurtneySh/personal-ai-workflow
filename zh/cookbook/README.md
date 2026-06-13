@@ -17,14 +17,14 @@ Cookbook 里的 prompt 不是魔法指令。它们仍然依赖真实项目上下
 
 - [Repo Orientation](repo-orientation.md)：让 agent 在修改文件前读懂一个已有仓库。
 - [Task Handoff](task-handoff.md)：把一个边界清楚的任务交给 Claude Code 或 Codex CLI。
+- [Review And Fix](review-and-fix.md)：处理具体 test、lint、review 或 CI 反馈。
 
 ## 后续场景 / Planned Scenarios
 
 后续可以继续补充：
 
-- review / test / lint feedback 修复。
 - 长会话或中断后的 context refresh。
-- PR / CI 工作流。
+- 更完整的 PR / CI 工作流。
 - multi-agent delegation。
 
 这些场景先不创建文件，等真实使用后再补。
