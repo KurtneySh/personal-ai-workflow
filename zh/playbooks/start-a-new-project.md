@@ -129,16 +129,16 @@
 请输出文件清单、用途，以及哪些项目需要人类确认。
 ```
 
-### A4. 复制 project templates
+### A4. 复制项目模板
 
 - Input: 需要创建的 workspace 文件清单。
-- Action: 从 `zh/templates/project/` 复制对应模板内容；根据项目级别裁剪可选部分。
-- Output: `README.md`, `STATE.md`, Level 2+ `SPEC.md`, Level 2+ `AGENTS.md`.
-- Verification: 每个文件都有真实项目上下文；没有保留空泛待填文本。
+- Action: 项目模板覆盖四个核心 workspace 文件：`README.md`、`STATE.md`、Level 2+ `SPEC.md`、Level 2+ `AGENTS.md`；A3 选出的其他最小 infra 项目应创建为最小 stub、连接到项目已有工具，或在缺少上下文时标记为 `需要确认`。
+- Output: 已创建或标记为需要确认的最小 infra 文件和目录。
+- Verification: A3 选出的完整最小 infra 清单被保留；每个已创建文件都有真实项目上下文；没有保留空泛待填文本。
 - AI Prompt:
 
 ```text
-请根据 `zh/templates/project/` 中的对应模板，为这个项目生成 workspace 文件初稿。
+请根据 `zh/templates/project/` 中的对应模板，为这个项目生成 workspace 文件初稿，并保留 A3 选出的完整最小 infra 清单。
 
 需要创建的文件：
 <文件清单>
@@ -147,6 +147,9 @@
 <项目目标、项目级别、已知范围、已知约束>
 
 要求：
+- 对四个核心 workspace 文件使用项目模板：`README.md`、`STATE.md`、Level 2+ `SPEC.md`、Level 2+ `AGENTS.md`。
+- 对 A3 清单中没有项目模板的其他最小 infra 项目：只有在上下文足够时才创建最小 stub 或连接到项目已有工具；上下文不足时标记为“需要确认”。
+- 保留 A3 选出的完整最小 infra，不要只输出核心 workspace 文件。
 - 从模板内容出发，根据项目级别裁剪可选部分。
 - 每个文件都必须包含真实项目上下文。
 - 对缺失信息写“需要确认”。
@@ -209,18 +212,20 @@
 - AI Prompt:
 
 ```text
-请阅读 README/STATE/SPEC/AGENTS，并基于这些文件复述当前项目状态。
+请阅读已创建的 workspace 文件，并基于这些文件复述当前项目状态。
+Level 1 通常包括 README/STATE；Level 2+ 通常还包括 SPEC/AGENTS。
 
 请输出：
 - 当前阶段
 - 下一步
 - 阻塞问题
 - 最近一次验证结果
-- 一个低风险 smoke test 小任务建议
+- 一个 read-only 或低风险 smoke test 小任务建议
 
 第一阶段不要修改文件。请明确说明“等待人类确认后再执行 smoke test”。
+除非人类明确确认，否则 smoke test 必须是 read-only 或低风险操作。
 
-人类确认后，再执行低风险 smoke test，并更新 STATE.md：
+人类确认后，再执行 read-only 或低风险 smoke test，并更新 STATE.md：
 - 当前阶段
 - 下一步
 - 阻塞问题
