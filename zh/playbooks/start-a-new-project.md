@@ -323,9 +323,9 @@ Level 1 通常包括 README/STATE；Level 2+ 通常还包括 SPEC/AGENTS。
 ### B4. 基于现有证据补齐 workspace 文件
 
 - Input: 现有 repo 文档和代码；缺失 infra 清单。
-- Action: 基于现有证据生成或更新 `README.md`、`STATE.md`、`SPEC.md`、`AGENTS.md`，以及 B3 所需的其他最小 infra；不确定信息写为 `需要确认`。
+- Action: 基于现有证据，按项目级别生成或更新 B3 最小补齐方案中的 workspace 文件；Level 1 通常只需要 `README.md`、`STATE.md` 和验证命令记录，不要无条件创建 `SPEC.md` 或 `AGENTS.md`；不确定信息写为 `需要确认`。
 - Output: 补齐后的 workspace 文件和/或标记为 `需要确认` 的项目。
-- Verification: 新内容可追溯到现有文件、命令或人类确认；不编造命令、测试、部署流程或团队规则。
+- Verification: 新内容可追溯到现有文件、命令或人类确认；修改任何已有文件前已经列出精确文件和证据来源，并得到人类明确确认；不编造命令、测试、部署流程或团队规则。
 - AI Prompt:
 
 ```text
@@ -336,14 +336,18 @@ Level 1 通常包括 README/STATE；Level 2+ 通常还包括 SPEC/AGENTS。
 - 缺失 infra 清单：<粘贴 B3 输出>
 
 要求：
-- 按 B3 的最小补齐方案生成或更新 `README.md`、`STATE.md`、`SPEC.md`、`AGENTS.md`，以及其他必要 infra。
-- Level 1 不要假设一定存在 `SPEC.md` 或 `AGENTS.md`。
+- 按项目级别和 B3 的最小补齐方案生成或更新 workspace 文件；不要无条件创建或更新 `SPEC.md`、`AGENTS.md`。
+- Level 1 不要假设一定存在 `SPEC.md` 或 `AGENTS.md`；除非人类明确要求或 B3 证据支持，否则只补齐 Level 1 所需的 `README.md`、`STATE.md` 和验证命令记录。
 - 所有新增内容必须能追溯到现有文件、实际命令或人类确认。
 - 不确定信息统一写为“需要确认”。
 - 不要编造命令、测试、部署流程、团队规则、权限模型或完成标准。
-- 修改前说明将编辑哪些文件。
+- 修改前先列出将创建或更新的精确文件清单，并为每个文件列出证据来源。
+- 如果将修改任何已有文件，尤其是 `README.md`、`STATE.md`、`SPEC.md`、`AGENTS.md` 或其他已有 infra 文件，必须先等待人类明确确认；等待人类确认前不要修改文件。
 
 请输出：
+- 将创建或更新的精确文件清单
+- 每个文件的证据来源
+- 明确说明“等待人类确认后再修改已有文件”
 - 已补齐的 workspace 文件
 - 仍需人类确认的项目
 - 每项关键信息的证据来源
@@ -352,9 +356,9 @@ Level 1 通常包括 README/STATE；Level 2+ 通常还包括 SPEC/AGENTS。
 ### B5. 校验验证命令
 
 - Input: README、STATE、AGENTS 中记录的验证命令。
-- Action: 实际运行至少一个验证命令；记录命令和结果。
+- Action: 只自动运行 read-only 或低风险本地验证命令；如果记录的命令可能部署、migrate 数据、写文件、安装依赖、联系外部服务、改变认证或权限，或触碰生产 / 敏感数据，必须先停止并请求人类确认；记录命令和结果。
 - Output: 验证命令结果；如果失败，记录关键错误和判断。
-- Verification: 命令必须实际运行；失败不能当作成功。
+- Verification: 自动运行的命令必须是 read-only 或低风险本地命令；高风险命令已在运行前等待人类确认；命令失败不能当作成功。
 - AI Prompt:
 
 ```text
@@ -362,7 +366,10 @@ Level 1 通常包括 README/STATE；Level 2+ 通常还包括 SPEC/AGENTS。
 
 要求：
 - Level 1 可能没有 AGENTS；不要假设文件一定存在。
-- 至少实际运行一个可用的验证命令。
+- 只自动运行 read-only 或低风险本地验证命令。
+- 如果记录的命令可能部署、migrate 数据、写文件、安装依赖、联系外部服务、改变认证或权限，或触碰生产 / 敏感数据，请停止并请求人类确认；确认前不要运行该命令。
+- 如果存在多个命令，优先选择最小、read-only 或低风险的本地验证命令。
+- 至少实际运行一个可用的验证命令；如果唯一可用命令需要人类确认，请说明风险并等待确认。
 - 报告命令、结果和关键错误。
 - 如果没有记录验证命令，请明确说明“未找到验证命令”。
 - 如果命令失败，请明确说明失败，不要声称成功。
@@ -380,7 +387,7 @@ Level 1 通常包括 README/STATE；Level 2+ 通常还包括 SPEC/AGENTS。
 - Input: 补齐后的 workspace 文件；验证命令结果。
 - Action: 人类 review 目标、边界、禁止操作、完成标准和验证结果；确认后更新 `STATE.md` 的当前状态、下一步和阻塞问题。
 - Output: 经确认的 workspace 文件；可交接的 `STATE.md`。
-- Verification: `STATE.md` 能让下一个 agent 接手；`AGENTS.md` 包含禁止操作和完成标准。
+- Verification: `STATE.md` 能让下一个 agent 接手；Level 1 的禁止操作和完成标准可以记录在 `README.md` 或 `STATE.md`；Level 2+ 应在 `AGENTS.md` 中包含禁止操作和完成标准。
 - AI Prompt:
 
 ```text
@@ -389,8 +396,9 @@ Level 1 通常包括 README/STATE；Level 2+ 通常还包括 SPEC/AGENTS。
 要求：
 - 重点检查目标、边界、禁止操作、完成标准和验证结果。
 - Level 1 可能没有 SPEC 或 AGENTS；不要假设文件一定存在。
+- Level 1 的禁止操作和完成标准可以记录在 README 或 STATE；如果 AGENTS 不存在，请检查 README/STATE 是否已覆盖这些内容。
+- Level 2+ 应在 AGENTS 中包含禁止操作和完成标准；如果 AGENTS 不存在或缺失这些内容，请标记为需要补齐。
 - 如果 AGENTS 存在，确认其中包含禁止操作和完成标准。
-- 如果 AGENTS 不存在，请说明这是否符合当前项目级别，或是否需要补齐。
 - 确认前不要修改文件。
 - 不要编造团队规则、验收标准或验证结论。
 
