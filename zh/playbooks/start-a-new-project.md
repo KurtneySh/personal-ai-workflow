@@ -206,9 +206,9 @@
 ### A7. 更新 STATE 并做 smoke test
 
 - Input: 已确认的 workspace 文件；验证命令结果。
-- Action: 先阅读 workspace 文件，复述状态并提出低风险 smoke test，等待人类确认；确认后执行 smoke test，并更新 `STATE.md` 的当前阶段、下一步、阻塞问题和最近验证结果。
-- Output: 准备阶段输出当前状态、下一步、阻塞问题和 smoke test 建议；确认执行后输出可交接的 `STATE.md` 和一次低风险 smoke test 结果。
-- Verification: AI 助手能复述项目状态和下一步，不需要再次询问基础上下文；smoke test 结果已记录到 `STATE.md`。
+- Action: 先阅读已创建的 workspace 文件，复述项目状态，提出 read-only 或低风险 smoke test，并等待人类确认；确认后只执行并报告 smoke test 结果，不更新 `STATE.md`；再次确认后，才更新 `STATE.md` 的当前阶段、下一步、阻塞问题、最近验证结果和 smoke test 结果。
+- Output: 第一阶段输出当前状态、下一步、阻塞问题和 smoke test 建议；第二阶段输出 smoke test 实际结果并等待再次确认；第三阶段输出可交接的 `STATE.md`。
+- Verification: AI 助手能复述项目状态和下一步，不需要再次询问基础上下文；smoke test 已在更新 `STATE.md` 前单独报告；`STATE.md` 只在第二次人类确认后记录当前阶段、下一步、阻塞问题、最近验证结果和 smoke test 结果。
 - AI Prompt:
 
 ```text
@@ -225,7 +225,10 @@ Level 1 通常包括 README/STATE；Level 2+ 通常还包括 SPEC/AGENTS。
 第一阶段不要修改文件。请明确说明“等待人类确认后再执行 smoke test”。
 除非人类明确确认，否则 smoke test 必须是 read-only 或低风险操作。
 
-人类确认后，再执行 read-only 或低风险 smoke test，并更新 STATE.md：
+人类第一次确认后，执行 read-only 或低风险 smoke test，并只报告结果；此时不要更新 STATE.md。
+报告后请明确说明“等待再次确认后再更新 STATE.md”。
+
+人类第二次确认后，才更新 STATE.md：
 - 当前阶段
 - 下一步
 - 阻塞问题
