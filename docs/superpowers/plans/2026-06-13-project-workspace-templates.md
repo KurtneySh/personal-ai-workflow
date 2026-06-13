@@ -145,7 +145,7 @@ Expected: commit succeeds.
 
 Create `zh/templates/project/README.template.md` with this content:
 
-````markdown
+`````markdown
 # README Template
 
 ## 用途 / Purpose
@@ -190,7 +190,7 @@ Create `zh/templates/project/README.template.md` with this content:
 
 ## 可复制模板 / Copyable Template
 
-```markdown
+````markdown
 # 项目名称
 
 ## 项目是什么
@@ -252,8 +252,8 @@ Create `zh/templates/project/README.template.md` with this content:
 - `SPEC.md`：项目目标、范围和关键决策。
 - `STATE.md`：当前状态、下一步和阻塞。
 - `AGENTS.md`：agent 工作规则。
-```
 ````
+`````
 
 - [ ] **Step 2: Write `SPEC.template.md`**
 
@@ -340,7 +340,10 @@ Create `zh/templates/project/SPEC.template.md` with this content:
 
 ## 成功标准
 
-- （填写内容）
+- 行为结果：
+- 验证方式：
+- 完成判定：
+- 不满足时的处理：
 
 ## 关键决策
 
