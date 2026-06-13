@@ -111,7 +111,7 @@
 - Input: 项目级别。
 - Action: 阅读 `zh/guides/infra-by-level.md`；列出当前级别最小需要的文件或目录。
 - Output: 本项目需要创建的 workspace 文件和目录清单。
-- Verification: 清单覆盖对应级别最低要求；Level 1 至少包含 `README.md`、`STATE.md` 和一个验证命令；Level 2 至少再包含 `SPEC.md`、`AGENTS.md`、`docs/decisions/` 和测试或明确验证脚本；Level 3/4 按指南和项目风险补充协作、CI、交接、风险、部署、审计和权限边界材料。
+- Verification: 清单覆盖对应级别最低要求；Level 1 至少包含 `README.md`、`STATE.md` 和一个验证命令；Level 2 至少再包含 `SPEC.md`、`AGENTS.md`、`docs/decisions/` 和测试或明确验证脚本；Level 3 必须包含协作、CI、任务、交接和 multi-agent delegation contract 材料；Level 4 必须包含风险、安全、隐私、rollback、human approval、部署、审计、loop stop 和权限边界材料。
 - AI Prompt:
 
 ```text
@@ -122,10 +122,10 @@
 请按项目级别判断：
 - Level 1：`README.md`、`STATE.md`、至少一个验证命令。
 - Level 2：Level 1 全部，加 `SPEC.md`、`AGENTS.md`、`docs/decisions/`、tests 或明确验证脚本。
-- Level 3：Level 2 全部，按需补充协作、ownership、review、CI、任务模板、交接和 multi-agent contract 相关材料。
-- Level 4：Level 3 全部，按需补充风险、安全、隐私、rollback、human approval、部署、审计、loop stop 和权限边界相关材料。
+- Level 3：Level 2 全部，加 `CONTRIBUTING.md`、`CODEOWNERS` 或 ownership 文档、PR checklist、CI checks、issue / task template、handoff notes、multi-agent delegation contract。
+- Level 4：Level 3 全部，加 risk register、security / privacy checklist、rollback plan、human approval gates、deployment checklist、incident / audit notes、loop stop conditions、permission boundaries for agents。
 
-只列出最小 infra，不要添加不必要的文件，也不要为了满足级别而机械创建所有可选文件。
+只列出已选级别的最小 infra；项目特定可选补充另行处理，不要添加不必要的可选文件。
 请输出文件清单、用途，以及哪些项目需要人类确认。
 ```
 
