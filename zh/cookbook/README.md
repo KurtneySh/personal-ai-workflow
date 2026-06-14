@@ -19,12 +19,12 @@ Cookbook 里的 prompt 不是魔法指令。它们仍然依赖真实项目上下
 - [Task Handoff](task-handoff.md)：把一个边界清楚的任务交给 Claude Code 或 Codex CLI。
 - [Review And Fix](review-and-fix.md)：处理具体 test、lint、review 或 CI 反馈。
 - [Context Refresh](context-refresh.md)：在长会话、中断、agent 切换或上下文压缩之后恢复当前项目状态。
+- [PR CI Workflow](pr-ci-workflow.md)：在 PR 准备、CI 读取、review 处理和合并前检查中组织 agent 协作。
 
 ## 后续场景 / Planned Scenarios
 
 后续可以继续补充：
 
-- 更完整的 PR / CI 工作流。
 - multi-agent delegation。
 
 这些场景先不创建文件，等真实使用后再补。
