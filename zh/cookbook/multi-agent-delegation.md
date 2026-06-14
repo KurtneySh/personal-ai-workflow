@@ -314,6 +314,16 @@ multi-agent delegation 不是自动 loop。
 
 项目级 skill 优先。只有当这个 delegation 模式跨多个项目也稳定有效时，才记录为系统级 skill 候选，并且必须经过人类 review。
 
+## 和其他 Cookbook 场景的关系 / Relationship To Other Cookbook Scenarios
+
+- [Repo Orientation](repo-orientation.md)：用于 delegation 前理解 repo。缺少 repo 结构、命令、风险边界或验证信号时，先 orientation，再 delegation。
+- [Task Handoff](task-handoff.md)：delegation 是协调层，用来拆分多个 bounded handoffs；每个 worker 仍然需要一个边界清楚的 handoff。
+- [Review And Fix](review-and-fix.md)：任何 agent 发现的 test、lint、typecheck、review 或 CI 反馈，都应该转成边界清楚的 feedback fix。
+- [Context Refresh](context-refresh.md)：如果 controller 失去 branch、ownership、commits 或 agent outputs 的上下文，先 refresh context，再继续 delegation。
+- [PR CI Workflow](pr-ci-workflow.md)：PR / CI 工作可以使用 delegation 做独立修复或 review，但 delegation 本身不授权 push、PR update 或 merge。
+- [Loops](../loops/README.md)：delegation 不是 loop。并行工作不代表可以反复自动执行。
+- [Skill Workflow](../skill-workflow/README.md)：重复出现的 delegation pattern 可以成为项目级 skill 候选，但不能自动升级为系统级 skill。
+
 ## 相关文档 / Related Docs
 
 - [项目级别判断](../guides/project-levels.md)
@@ -322,6 +332,7 @@ multi-agent delegation 不是自动 loop。
 - [新项目启动 Playbook](../playbooks/start-a-new-project.md)
 - [Loops](../loops/README.md)
 - [Skill Workflow](../skill-workflow/README.md)
+- [Repo Orientation](repo-orientation.md)
 - [Task Handoff](task-handoff.md)
 - [Review And Fix](review-and-fix.md)
 - [Context Refresh](context-refresh.md)
