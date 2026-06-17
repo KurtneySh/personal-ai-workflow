@@ -1,7 +1,9 @@
 # Guides
 
-This section mirrors the Chinese source-of-truth content.
+These guides help you choose the smallest useful AI workflow infra for a project.
 
-Translation is planned after the Chinese version stabilizes.
+Start with the project level, then add only the infra that gives an agent better context, clearer instructions, stronger verification signals, safer collaboration, or better risk control.
 
-For the current content, see the matching section under `zh/`.
+- [Project Levels](project-levels.md)
+- [Infra By Level](infra-by-level.md)
+- [Infra Checklist](infra-checklists.md)
