@@ -7,24 +7,26 @@ This handbook helps developers build AI-assisted development workflows that are 
 1. Start the English v1 draft core path with [Project Levels](en/guides/project-levels.md) to decide whether your project is Level 1-4.
 2. Read [Infra By Level](en/guides/infra-by-level.md) to choose the smallest useful AI workflow infra.
 3. Read [Infra Checklist](en/guides/infra-checklists.md) to add context, rules, verification signal, collaboration boundaries, risk controls, and loop constraints.
-4. Read the v1 draft [Loops](en/loops/README.md) guidance before turning repeated agent work into a loop, especially when defining stop / escalate conditions and human gate checkpoints.
-5. Read the v1 draft [Skill Workflow](en/skill-workflow/README.md) guidance when a repeated handoff should become a reusable skill.
+4. Use the v1 draft [Start A New Project Playbook](en/playbooks/start-a-new-project.md) when setting up a new repo or retrofitting an existing one.
+5. Use the v1 draft [Cookbook](en/cookbook/README.md) for concrete Claude Code and Codex CLI scenarios such as repo orientation, task handoff, review handling, PR / CI work, and multi-agent delegation.
+6. Read the v1 draft [Loops](en/loops/README.md) guidance before turning repeated agent work into a loop, especially when defining stop / escalate conditions and human gate checkpoints.
+7. Read the v1 draft [Skill Workflow](en/skill-workflow/README.md) guidance when a repeated handoff should become a reusable skill.
 
 ## Repository Map
 
 - `en/guides/`: English v1 draft core concepts for project levels, infra recommendations, and checklists.
-- `en/playbooks/`: planned English section for end-to-end workflows from goal to completion.
-- `en/cookbook/`: planned English section for scenario-driven Claude Code and Codex CLI usage.
-- `en/loops/`: core translation pass section for loop readiness, loop design, stop / escalate rules, and human gates.
-- `en/skill-workflow/`: core translation pass section for when and how to capture reusable skills.
-- `en/cases/`: planned English section for practical case studies and case templates.
-- `en/templates/`: planned English section for document templates for project workbenches.
-- `en/reference/`: planned English section for concepts, philosophy, glossary, and appendix material.
+- `en/playbooks/`: English v1 draft end-to-end workflows from goal to completion.
+- `en/cookbook/`: English v1 draft scenario guidance for Claude Code and Codex CLI usage.
+- `en/loops/`: English v1 draft guidance for loop readiness, loop design, stop / escalate rules, and human gates.
+- `en/skill-workflow/`: English v1 draft guidance for when and how to capture reusable skills.
+- `en/cases/`: planned later English pass for practical case studies and case templates.
+- `en/templates/`: planned later English pass for document templates for project workbenches.
+- `en/reference/`: planned later English pass for concepts, philosophy, glossary, and appendix material.
 - `zh/`: Chinese v1 source content.
 - `docs/repo/`: repository maintenance notes and translation tracking.
 
 ## Current Language Status
 
-Chinese v1 is the source of truth. This pass is drafting the English v1 core concepts so the public entrypoint can be English-first while the Chinese source remains available for authoritative reference.
+Chinese v1 is the source of truth. English v1 draft content now covers the public entrypoint, core concepts, the new-project playbook, and cookbook scenarios, while templates, reference material, and cases remain later English passes.
 
 For the source entrypoint, see [Chinese source entrypoint](README.zh.md).
