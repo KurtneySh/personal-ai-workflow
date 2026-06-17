@@ -7,8 +7,8 @@ This handbook helps developers build AI-assisted development workflows that are 
 1. Start the English v1 draft core path with [Project Levels](en/guides/project-levels.md) to decide whether your project is Level 1-4.
 2. Read [Infra By Level](en/guides/infra-by-level.md) to choose the smallest useful AI workflow infra.
 3. Read [Infra Checklist](en/guides/infra-checklists.md) to add context, rules, verification signal, collaboration boundaries, risk controls, and loop constraints.
-4. Use [Loops](en/loops/README.md) as an upcoming core translation in this pass before turning repeated agent work into a loop, especially when defining stop / escalate conditions and human gate checkpoints.
-5. Use [Skill Workflow](en/skill-workflow/README.md) as an upcoming core translation in this pass when a repeated handoff should become a reusable skill.
+4. Read the v1 draft [Loops](en/loops/README.md) guidance before turning repeated agent work into a loop, especially when defining stop / escalate conditions and human gate checkpoints.
+5. Read the v1 draft [Skill Workflow](en/skill-workflow/README.md) guidance when a repeated handoff should become a reusable skill.
 
 ## Repository Map
 
