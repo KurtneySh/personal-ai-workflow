@@ -22,9 +22,9 @@ Cookbook 里的 prompt 不是魔法指令。它们仍然依赖真实项目上下
 - [PR CI Workflow](pr-ci-workflow.md)：在 PR 准备、CI 读取、review 处理和合并前检查中组织 agent 协作。
 - [Multi-Agent Delegation](multi-agent-delegation.md)：把可独立推进的任务拆给多个 agent，并控制 ownership、review、集成和最终验证。
 
-## 后续场景 / Planned Scenarios
+## 扩展原则 / Extension Principles
 
-后续场景等真实使用后再补。
+新的 cookbook 场景应该来自真实任务，而不是预先罗列命令大全。只有当某类任务反复出现，并且输入、边界、验证方式都能写清楚时，才新增独立场景。
 
 ## 如何使用一个场景 / How To Use A Scenario
 

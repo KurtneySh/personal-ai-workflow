@@ -20,7 +20,7 @@
 - `zh/cookbook/`：按场景使用 Claude Code 和 Codex CLI。场景化 prompt 和交接模板见 [Cookbook](zh/cookbook/README.md)。
 - `zh/loops/`：loop 是否该做、怎么设计、怎么停止。loop 判断与设计见 [Loops](zh/loops/README.md)。
 - `zh/skill-workflow/`：什么时候把流程沉淀成 skill。skill 判断、项目级 skill 和系统级 skill 候选见 [Skill Workflow](zh/skill-workflow/README.md)。
-- `zh/cases/`：实战案例，记录项目背景、infra 选择、agent 行动和人的判断。
+- `zh/cases/`：实战案例，记录项目背景、infra 选择、agent 行动和人的判断。案例入口和模板见 [实战案例](zh/cases/README.md)。
 - `zh/templates/`：纯文档模板示例。项目工作台模板见 [项目工作台模板](zh/templates/project/README.md)。
 - `zh/reference/`：概念、哲学、术语和附录材料。
 
@@ -28,5 +28,5 @@
 
 - 中文内容是 v1 的 source of truth。
 - `README.md` 是面向未来公开分享的英文默认入口。
-- 英文目录先保持同构占位，等中文内容稳定后再翻译。
+- 英文目录当前仍是同构占位，下一步从稳定后的中文源开始翻译。
 - 模板只是示例，不是强制标准。

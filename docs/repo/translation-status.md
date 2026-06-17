@@ -11,15 +11,21 @@ English content under `en/` mirrors the Chinese structure and starts as placehol
 - Translate English content after Chinese documents become stable enough to share.
 - Do not mix Chinese and English versions inside the same long-form content file.
 
-## Initial Status
+## Current Status
 
 | Section | Chinese | English |
 | --- | --- | --- |
-| guides | In progress | Placeholder |
-| playbooks | Planned | Placeholder |
-| cookbook | Planned | Placeholder |
-| loops | Planned | Placeholder |
-| skill-workflow | Planned | Placeholder |
-| cases | Planned | Placeholder |
-| templates | Planned | Placeholder |
-| reference | In progress | Placeholder |
+| guides | v1 stabilized | Placeholder |
+| playbooks | v1 stabilized | Placeholder |
+| cookbook | v1 stabilized | Placeholder |
+| loops | v1 stabilized | Placeholder |
+| skill-workflow | v1 stabilized | Placeholder |
+| cases | v1 placeholder/template only | Placeholder |
+| templates | v1 stabilized | Placeholder |
+| reference | v1 stabilized | Placeholder |
+
+## Notes
+
+- Chinese v1 stabilization audit completed on 2026-06-16.
+- English translation should start from the stabilized Chinese source and keep the same information architecture.
+- `zh/cases/` intentionally contains an entrypoint and template only; real cases will be added manually later.
