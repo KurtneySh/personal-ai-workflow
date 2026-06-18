@@ -8,7 +8,7 @@ English content under `en/` mirrors the Chinese structure. Core concepts, scenar
 
 - Treat stabilized Chinese v1 content as the source of truth.
 - Keep English directories structurally aligned with Chinese directories.
-- Translate English content in passes, starting with core concepts and scenario guidance before templates, reference material, and cases.
+- Translate English content in passes, starting with core concepts, scenario guidance, and project workspace templates before reference material and cases.
 - Do not mix Chinese and English versions inside the same long-form content file.
 
 ## Current Status
