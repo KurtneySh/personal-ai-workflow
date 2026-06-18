@@ -11,6 +11,7 @@ This handbook helps developers build AI-assisted development workflows that are 
 5. Use the v1 draft [Cookbook](en/cookbook/README.md) for concrete Claude Code and Codex CLI scenarios such as repo orientation, task handoff, review handling, PR / CI work, and multi-agent delegation.
 6. Read the v1 draft [Loops](en/loops/README.md) guidance before turning repeated agent work into a loop, especially when defining stop / escalate conditions and human gate checkpoints.
 7. Read the v1 draft [Skill Workflow](en/skill-workflow/README.md) guidance when a repeated handoff should become a reusable skill.
+8. Read the v1 draft [Reference](en/reference/README.md) when you want the appendix-style working philosophy behind the handbook.
 
 ## Repository Map
 
@@ -21,12 +22,12 @@ This handbook helps developers build AI-assisted development workflows that are 
 - `en/skill-workflow/`: English v1 draft guidance for when and how to capture reusable skills.
 - `en/cases/`: future English pass for practical case studies and case templates.
 - `en/templates/`: English v1 draft document templates for project workbenches.
-- `en/reference/`: future English pass for concepts, philosophy, glossary, and appendix material.
+- `en/reference/`: English v1 draft appendix material for AI development workflow philosophy and best practices.
 - `zh/`: Chinese v1 source content.
 - `docs/repo/`: repository maintenance notes and translation tracking.
 
 ## Current Language Status
 
-Chinese v1 is the source of truth. English v1 draft content now covers the public entrypoint, core concepts, the new-project playbook, cookbook scenarios, loops, skill workflow, and project workspace templates, while reference material and cases remain later English passes.
+Chinese v1 is the source of truth. English v1 draft content now covers the public entrypoint, core concepts, the new-project playbook, cookbook scenarios, loops, skill workflow, project workspace templates, and reference material, while cases remain a later English pass.
 
 For the source entrypoint, see [Chinese source entrypoint](README.zh.md).

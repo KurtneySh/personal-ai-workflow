@@ -2,13 +2,13 @@
 
 Chinese content under `zh/` is the v1 source of truth.
 
-English content under `en/` mirrors the Chinese structure. Core concepts, scenario guidance, and project workspace templates are drafted first; reference material and cases remain placeholders.
+English content under `en/` mirrors the Chinese structure. Core concepts, scenario guidance, project workspace templates, and reference material are drafted first; cases remain a placeholder.
 
 ## Current Policy
 
 - Treat stabilized Chinese v1 content as the source of truth.
 - Keep English directories structurally aligned with Chinese directories.
-- Translate English content in passes, starting with core concepts, scenario guidance, and project workspace templates before reference material and cases.
+- Translate English content in passes, starting with core concepts, scenario guidance, project workspace templates, and reference material before cases.
 - Do not mix Chinese and English versions inside the same long-form content file.
 
 ## Current Status
@@ -22,7 +22,7 @@ English content under `en/` mirrors the Chinese structure. Core concepts, scenar
 | skill-workflow | v1 stabilized | v1 draft |
 | cases | v1 placeholder/template only | Placeholder |
 | templates | v1 stabilized | v1 draft |
-| reference | v1 stabilized | Placeholder |
+| reference | v1 stabilized | v1 draft |
 
 ## Notes
 
@@ -30,5 +30,5 @@ English content under `en/` mirrors the Chinese structure. Core concepts, scenar
 - English core concept draft completed on 2026-06-16 for `README.md`, `en/guides/`, `en/loops/`, and `en/skill-workflow/`.
 - English scenario layer draft completed on 2026-06-17 for `en/playbooks/` and `en/cookbook/`.
 - English templates draft completed on 2026-06-17 for `en/templates/` and `en/templates/project/`.
-- Remaining English placeholders should be translated from the stabilized Chinese source while keeping the same information architecture.
-- `zh/cases/` intentionally contains an entrypoint and template only; real cases will be added manually later.
+- English reference draft completed on 2026-06-18 for `en/reference/`.
+- Cases remain the only English placeholder section; `zh/cases/` intentionally contains an entrypoint and template only, and real cases will be added manually later.
