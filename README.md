@@ -20,7 +20,7 @@ This handbook helps developers build AI-assisted development workflows that are 
 - `en/cookbook/`: English v1 draft scenario guidance for Claude Code and Codex CLI usage.
 - `en/loops/`: English v1 draft guidance for loop readiness, loop design, stop / escalate rules, and human gates.
 - `en/skill-workflow/`: English v1 draft guidance for when and how to capture reusable skills.
-- `en/cases/`: future English pass for practical case studies and case templates.
+- `en/cases/`: English v1 placeholder/template-only section for practical case studies; real cases will be added manually later.
 - `en/templates/`: English v1 draft document templates for project workbenches.
 - `en/reference/`: English v1 draft appendix material for AI development workflow philosophy and best practices.
 - `zh/`: Chinese v1 source content.
@@ -28,6 +28,6 @@ This handbook helps developers build AI-assisted development workflows that are 
 
 ## Current Language Status
 
-Chinese v1 is the source of truth. English v1 draft content now covers the public entrypoint, core concepts, the new-project playbook, cookbook scenarios, loops, skill workflow, project workspace templates, and reference material, while cases remain a later English pass.
+Chinese v1 is the source of truth. English v1 draft content now covers the public entrypoint, core concepts, the new-project playbook, cookbook scenarios, loops, skill workflow, project workspace templates, reference material, and template-only case documentation. Real case studies will be added manually later.
 
 For the source entrypoint, see [Chinese source entrypoint](README.zh.md).

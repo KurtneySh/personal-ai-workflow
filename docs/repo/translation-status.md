@@ -2,13 +2,13 @@
 
 Chinese content under `zh/` is the v1 source of truth.
 
-English content under `en/` mirrors the Chinese structure. Core concepts, scenario guidance, project workspace templates, and reference material are drafted first; cases remain a placeholder.
+English content under `en/` mirrors the Chinese structure. Core concepts, scenario guidance, project workspace templates, reference material, and template-only case documentation are drafted; real case studies will be added manually later.
 
 ## Current Policy
 
 - Treat stabilized Chinese v1 content as the source of truth.
 - Keep English directories structurally aligned with Chinese directories.
-- Translate English content in passes, starting with core concepts, scenario guidance, project workspace templates, and reference material before cases.
+- Translate English content in passes while keeping Chinese v1 as the source of truth; cases are template-only until real cases are added manually.
 - Do not mix Chinese and English versions inside the same long-form content file.
 
 ## Current Status
@@ -20,7 +20,7 @@ English content under `en/` mirrors the Chinese structure. Core concepts, scenar
 | cookbook | v1 stabilized | v1 draft |
 | loops | v1 stabilized | v1 draft |
 | skill-workflow | v1 stabilized | v1 draft |
-| cases | v1 placeholder/template only | Placeholder |
+| cases | v1 placeholder/template only | v1 placeholder/template only |
 | templates | v1 stabilized | v1 draft |
 | reference | v1 stabilized | v1 draft |
 
@@ -31,4 +31,5 @@ English content under `en/` mirrors the Chinese structure. Core concepts, scenar
 - English scenario layer draft completed on 2026-06-17 for `en/playbooks/` and `en/cookbook/`.
 - English templates draft completed on 2026-06-17 for `en/templates/` and `en/templates/project/`.
 - English reference draft completed on 2026-06-18 for `en/reference/`.
-- Cases remain the only English placeholder section; `zh/cases/` intentionally contains an entrypoint and template only, and real cases will be added manually later.
+- English cases template draft completed on 2026-06-18 for `en/cases/`.
+- `zh/cases/` and `en/cases/` intentionally contain entrypoints and templates only; real cases will be added manually later.
